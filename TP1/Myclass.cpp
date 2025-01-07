@@ -2,7 +2,7 @@
 
 // Constructor
 Myclass::Myclass(const std::string& name, const std::string& path) : objectName{name}, filePath{path} {}
-Myclass::Myclass(){ Myclass::Myclass("", ""); }
+Myclass::Myclass() : Myclass("", "") {}
 
 // Getters
 std::string Myclass::getObjectName() const {
