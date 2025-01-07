@@ -1,7 +1,6 @@
 #include "Myclass.h"
 
 // Constructor
-Myclass::Myclass(const std::string& name, const std::string& path) : objectName{name}, filePath{path} {}
 Myclass::Myclass() : Myclass("", "") {}
 
 // Getters
@@ -21,6 +20,3 @@ void Myclass::setObjectName(const std::string& name) {
 void Myclass::setFilePath(const std::string& path) {
         filePath = path;
 }
-
-// Destructor
-Myclass::~Myclass() {}
