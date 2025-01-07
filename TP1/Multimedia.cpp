@@ -28,7 +28,7 @@ void Multimedia::displayFileName(std::ostream& out) const {
 void Multimedia::displayFilePath(std::ostream& out) const {
     out << "File path: " << filePath << std::endl;
 }
-void Multimedia::displayDetails(std::ostream& out) const {
+void Multimedia::display(std::ostream& out) const {
     out << "Multimedia base details :" ; 
     out << "File name: " << fileName << std::endl;
     out << "File path: " << filePath << std::endl;

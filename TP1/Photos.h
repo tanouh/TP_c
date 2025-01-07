@@ -19,7 +19,7 @@ public:
          * @param longitude The longitude of the photo's location.
          */
         Photos(const std::string& name, const std::string& filePath, double latitude, double longitude);
-
+        Photos();
         // Getters
         /**
          * Retrieves the latitude of the photo.

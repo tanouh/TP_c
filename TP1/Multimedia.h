@@ -70,7 +70,7 @@ public:
          */
         void displayFilePath(std::ostream& out) const;
         // Additional function
-        void displayDetails(std::ostream& out) const;
+        void display(std::ostream& out) const;
 };
 
 #endif // Multimedia_H
