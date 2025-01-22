@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 
 Photos::Photos(const std::string& name, const std::string& path, double latitude, double longitude): Multimedia(name, path), latitude(latitude), longitude(longitude) {}
@@ -14,9 +15,9 @@ Photos::Photos(): Multimedia() {
 
 void Photos::display(std::ostream& out) const {
         Multimedia::display(out);
-        out << "Multimedia type : Photos";
-        out << "Photo latitude: " << latitude << std::endl;
-        out << "Photo longitude: " << longitude << std::endl;
+        out << "\tMultimedia type : Photos" << std::endl;
+        out << "\tPhoto latitude: " << latitude << std::endl;
+        out << "\tPhoto longitude: " << longitude << std::endl;
 }
 
 void Photos::setLatitude(double latitude) {
@@ -33,4 +34,16 @@ void Photos::setLongitude(double longitude) {
 
 double Photos::getLongitude() const {
         return longitude;
+}
+
+void Photos::play() const {
+        const std::string& arg = "imagej " + getFilePath() + " &";
+        std::cout << "Opening "<< getFileName() << "... "<< std::endl;
+        try{
+                std::system(arg.c_str());
+        }
+        catch(const std::exception& e){
+                std::cerr << "Error opening photo: " << e.what() << std::endl;
+        }
+        
 }

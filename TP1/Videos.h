@@ -21,6 +21,9 @@ public:
          * Initializes the Multimedia base class and sets the duration to 0.
          */
         Videos();
+
+        // Destructor 
+        ~Videos() {};
         // Getters and Setters
         /**
          * Retrieves the duration of the video in seconds.
@@ -39,7 +42,13 @@ public:
         /**
          * Displays the details of the video, including its name, file path, and duration.
          */
-        void display(std::ostream& out) const;
+        void display(std::ostream& out) const override;
+
+        // Play function
+        /**
+         * Plays the video.
+         */
+        void play() const override;
 };
 
 #endif // VIDEOS_H

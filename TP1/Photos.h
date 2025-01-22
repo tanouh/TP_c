@@ -20,6 +20,10 @@ public:
          */
         Photos(const std::string& name, const std::string& filePath, double latitude, double longitude);
         Photos();
+
+        // Destructor
+        ~Photos() {};
+
         // Getters
         /**
          * Retrieves the latitude of the photo.
@@ -50,7 +54,13 @@ public:
         /**
          * Displays the details of the photo, including its name, file path, latitude, and longitude.
          */
-        void display(std::ostream& out) const;
+        void display(std::ostream& out) const override;
+
+        // Play function
+        /**
+         * Plays/shows the photo.
+         */
+        void play() const override;
 
 };
 

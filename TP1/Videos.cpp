@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 
 
 Videos::Videos(std::string name, std::string pathname, int duration) : Multimedia(name, pathname), duration(duration) {}
@@ -12,8 +13,8 @@ Videos::Videos() : Multimedia(){
 }
 void Videos::display(std::ostream& out) const{
         Multimedia::display(out);
-        out << "Multimedia type : Videos";
-        out << "Video duration: " << duration << " seconds" << std::endl;
+        out << "\tMultimedia type : Videos" << std::endl;
+        out << "\tVideo duration: " << duration << " seconds" << std::endl;
 }
 int Videos::getDuration() const {
     return duration;
@@ -21,4 +22,14 @@ int Videos::getDuration() const {
 
 void Videos::setDuration(int duration) {
     this->duration = duration;
+}
+
+void Videos::play() const{
+        std::cout << "Playing " << getFileName() << " ..." << std::endl;
+        const std::string& arg = "mpv "+ getFilePath() + " &";
+        try{
+                std::system(arg.c_str());
+        } catch(const std::exception& e){
+                std::cerr << "Error playing video: " << e.what() << std::endl;
+        }
 }
