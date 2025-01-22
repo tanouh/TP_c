@@ -9,6 +9,7 @@ using namespace std;
 #include "Videos.h"
 #include "Multimedia.h"
 #include "Film.h"
+#include "Group.h"
 
 void testMultimediaTab(){
     Multimedia* photo1 = new Photos("ChillGuy", "multimedias/chill_guy.jpg", 50, 50);
@@ -77,10 +78,36 @@ void testCopyMemory(){
     film3.display(std::cout);
 }
 
+void testGroup(){
+    // Create some multimedia objects
+    std::shared_ptr<Photos> photo1 = std::make_shared<Photos>("Cartoon", "multimedias/peppa_pig.jpg", 1920, 1080);
+    std::shared_ptr<Photos> photo2 = std::make_shared<Photos>("Meme", "multimedias/chill_guy.jpg", 1280, 720);
+    
+    int chapters[] = {3, 6, 4};
+    std::shared_ptr<Film> film1 = std::make_shared<Film>("Random", "multimedias/wave.mp4", 13, chapters, 3);
+    
+    // Create groups
+    Group vacationPhotos("Google Photos");
+    vacationPhotos.push_back(photo1);
+    vacationPhotos.push_back(photo2);
+    
+    Group allMedia("All Media");
+    allMedia.push_back(photo1);
+    allMedia.push_back(film1);
+
+    // Display groups
+    std::cout << "Displaying Vacation Photos group:" << std::endl;
+    vacationPhotos.display(std::cout);
+
+    std::cout << "\nDisplaying All Media group:" << std::endl;
+    allMedia.display(std::cout);
+}
+
 int main(int argc, const char* argv[])
 {
     std::cout << "Hello brave new world" << std::endl;
-    testCopyMemory();
+    // testCopyMemory();
+    testGroup();
     return 0;
 
 }

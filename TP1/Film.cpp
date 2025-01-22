@@ -59,8 +59,8 @@ void Film::setChapters(const int* chapterDurations, int numChapters) {
 // Display function
 void Film::display(std::ostream& out) const {
     Videos::display(out);
-    out << "Number of chapters: " << numChapters << "\\n";
+    out << "\tNumber of chapters: " << numChapters << std::endl;
     for (int i = 0; i < numChapters; ++i) {
-        out << "Chapter " << (i + 1) << ": " << chapters[i] << " seconds\\n";
+        out << "\t\tChapter " << (i + 1) << ": " << chapters[i] << " seconds" << std::endl;
     }
 }
