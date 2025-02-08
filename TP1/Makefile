@@ -61,6 +61,7 @@ ${PROG}: depend-${PROG} ${OBJETS}
 	${CXX} -o $@ ${CXXFLAGS} ${LDFLAGS} ${OBJETS} ${LDLIBS}
 
 clean:
+	-@find . -name "*.o" -exec rm -f {} \;
 	-@$(RM) *.o depend-${PROG} core 1>/dev/null 2>&1
 
 clean-all: clean
