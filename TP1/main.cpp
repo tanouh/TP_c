@@ -3,13 +3,19 @@
 // Created on 21/10/2018
 //
 
-#include <iostream>
-using namespace std;
 #include "Photos.h"
 #include "Videos.h"
 #include "Multimedia.h"
 #include "Film.h"
 #include "Group.h"
+#include "Database.h"
+
+#include <iostream>
+#include <thread>
+
+using namespace std;
+using PhotoPtr = std::shared_ptr<Photos>;
+using VideoPtr = std::shared_ptr<Videos>;
 
 void testMultimediaTab(){
     Multimedia* photo1 = new Photos("ChillGuy", "multimedias/chill_guy.jpg", 50, 50);
@@ -81,8 +87,8 @@ void testCopyMemory(){
 
 void testGroup(){
     // Create some multimedia objects
-    std::shared_ptr<Photos> photo1 = std::make_shared<Photos>("Cartoon", "multimedias/peppa_pig.jpg", 1920, 1080);
-    std::shared_ptr<Photos> photo2 = std::make_shared<Photos>("Meme", "multimedias/chill_guy.jpg", 1280, 720);
+    PhotoPtr photo1 = std::make_shared<Photos>("Cartoon", "multimedias/peppa_pig.jpg", 1920, 1080);
+    PhotoPtr photo2 = std::make_shared<Photos>("Meme", "multimedias/chill_guy.jpg", 1280, 720);
     
     int chapters[] = {3, 6, 4};
     std::shared_ptr<Film> film1 = std::make_shared<Film>("Random", "multimedias/wave.mp4", 13, chapters, 3);
@@ -108,21 +114,54 @@ void testSharedPtr(){
     // Create a group 
     Group group("My Group");
 
-    auto photo = std::make_shared<Photos>("Photo1", "path/to/photo1.jpg", 48.8566, 2.3522);
-    group.push_back(photo);
+    PhotoPtr photo1 = std::make_shared<Photos>("Cartoon", "multimedias/peppa_pig.jpg", 1920, 1080);
+    group.push_back(photo1);
 
     // Creating a video with a shared_ptr
-    auto video = std::make_shared<Videos>("Video1", "path/to/video1.mp4", 120);
+    VideoPtr video = std::make_shared<Videos>("Video1", "multimedias/wave.mp4", 13);
     group.push_back(video);
 
     group.display(std::cout);
 
     // Suppression of the last element added
-    group.pop_back();  // Suppression of the video
+    group.removeMedia(video);
 
     // Display after the suppression
     group.display(std::cout);
 
+}
+
+void testDatabaseCreation(){
+    Database& db = Database::getInstance();
+
+    // Create multimedia objects
+    PhotoPtr photo1 = std::make_shared<Photos>("Cartoon", "multimedias/peppa_pig.jpg", 1920, 1080);
+    PhotoPtr photo2 = std::make_shared<Photos>("Meme", "multimedias/chill_guy.jpg", 1280, 720);
+    VideoPtr video1 = std::make_shared<Videos>("Video1", "multimedias/wave.mp4", 13);
+    
+    int chapters[] = {3, 6, 4};
+    FilmPtr film1 = std::make_shared<Film>("Random", "multimedias/wave.mp4", 13, chapters, 3);
+    
+    // Create a group and add multimedia objects
+    auto group1 = db.createGroup("Group1");
+    group1->push_back(photo1);
+    group1->push_back(video1);
+
+    // Display a multimedia object and a group
+    db.displayMultimedia("Photo1");
+    db.displayGroup("Group1");
+
+    // Play a multimedia object
+    db.playMultimedia("Video1");
+
+    // Remove a multimedia object
+    db.removeMultimedia("Video1");
+
+    // Try to display the object after removal
+    db.displayMultimedia("Video1");
+
+    // Remove a group
+    db.removeGroup("Group1");
 }
 
 int main(int argc, const char* argv[])
@@ -130,7 +169,10 @@ int main(int argc, const char* argv[])
     std::cout << "Hello brave new world" << std::endl;
     // testCopyMemory();
     // testGroup();
-    testSharedPtr();
+    // testSharedPtr();
+
+
+
     return 0;
 
 }

@@ -14,7 +14,7 @@ PROG = myprog
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = Multimedia.cpp main.cpp Photos.cpp Videos.cpp Film.cpp
+SOURCES = main.cpp model/Multimedia.cpp model/Photos.cpp model/Videos.cpp model/Film.cpp model/Database.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
@@ -32,7 +32,7 @@ CXX = c++
 #   -std=c++11 pour C++11
 # Exemple: CXXFLAGS= -std=c++11 -Wall -O -I/usr/local/qt/include
 #
-CXXFLAGS = -std=c++11 -Wall -g
+CXXFLAGS = -std=c++11 -Wall -g -Imodel
 
 #
 # Options de l'editeur de liens
