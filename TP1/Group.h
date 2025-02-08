@@ -7,7 +7,9 @@
 #include <memory>
 #include "Multimedia.h"
 
-class Group : public std::list<std::shared_ptr<Multimedia>> {
+using MultimediaPtr = std::shared_ptr<Multimedia>;
+
+class Group : public std::list<MultimediaPtr>{
 private:
     std::string name;  // Name of the group
 

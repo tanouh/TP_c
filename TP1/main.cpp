@@ -25,6 +25,7 @@ void testMultimediaTab(){
         multimedia[i]->play();
     }
 }
+
 void testFilmMemoryHandling() {
     // Définition initiale des chapitres
     int chapterDurations[] = {3, 4, 5, 3};
@@ -103,11 +104,33 @@ void testGroup(){
     allMedia.display(std::cout);
 }
 
+void testSharedPtr(){
+    // Create a group 
+    Group group("My Group");
+
+    auto photo = std::make_shared<Photos>("Photo1", "path/to/photo1.jpg", 48.8566, 2.3522);
+    group.push_back(photo);
+
+    // Creating a video with a shared_ptr
+    auto video = std::make_shared<Videos>("Video1", "path/to/video1.mp4", 120);
+    group.push_back(video);
+
+    group.display(std::cout);
+
+    // Suppression of the last element added
+    group.pop_back();  // Suppression of the video
+
+    // Display after the suppression
+    group.display(std::cout);
+
+}
+
 int main(int argc, const char* argv[])
 {
     std::cout << "Hello brave new world" << std::endl;
     // testCopyMemory();
-    testGroup();
+    // testGroup();
+    testSharedPtr();
     return 0;
 
 }

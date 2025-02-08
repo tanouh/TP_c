@@ -13,6 +13,7 @@ Film::Film() : Videos(), chapters(nullptr), numChapters(0) {}
 // Destructor (frees allocated memory)
 Film::~Film() {
     delete[] chapters;
+    
 }
 
 // Copy constructor (deep copy)

@@ -54,7 +54,9 @@ public:
         /**
          * Destroys the Multimedia object.
          */
-        ~Multimedia() {};
+        virtual ~Multimedia() {
+                std::cout << "Destroying Multimedia object: " << fileName << std::endl;
+        };
 
         // Print functions
         /**

@@ -22,7 +22,9 @@ public:
         Photos();
 
         // Destructor
-        ~Photos() {};
+        ~Photos() override {
+                std::cout << "Destroying Photos object: " << getFileName() << std::endl;
+        };
 
         // Getters
         /**

@@ -23,7 +23,10 @@ public:
         Videos();
 
         // Destructor 
-        ~Videos() {};
+        ~Videos() override {
+                std::cout << "Destroying Videos object: " << getFileName() << std::endl;
+        }
+
         // Getters and Setters
         /**
          * Retrieves the duration of the video in seconds.
