@@ -167,12 +167,6 @@ void testDatabaseCreation(){
 int main(int argc, const char* argv[])
 {
     std::cout << "Hello brave new world" << std::endl;
-    // testCopyMemory();
-    // testGroup();
-    // testSharedPtr();
-
-
-
     return 0;
 
 }
