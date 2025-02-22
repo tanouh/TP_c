@@ -1,5 +1,4 @@
 #include "Multimedia.h"
-
 // Constructor
 Multimedia::Multimedia() : Multimedia("", "") {}
 

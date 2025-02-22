@@ -1,6 +1,5 @@
 //
 // main.cpp
-// Created on 21/10/2018
 //
 
 #include "Photos.h"

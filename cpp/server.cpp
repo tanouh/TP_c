@@ -9,7 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include "tcpserver.h"
-#include "../model/Database.h"
+#include "Database.h"
 
 const int PORT = 3331;
 

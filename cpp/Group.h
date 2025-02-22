@@ -1,3 +1,10 @@
+/**
+ * @file Group.h
+ * @brief Group class to store a collection of multimedia objects
+ * @author Tania Mahandry
+ * @date 2025
+ */
+
 #ifndef GROUP_H
 #define GROUP_H
 
@@ -10,30 +17,56 @@
 
 using MultimediaPtr = std::shared_ptr<Multimedia>;
 
+/**
+ * @class Group
+ * @brief Group class to store a collection of multimedia objects
+
+ */
 class Group : public std::list<MultimediaPtr>{
 private:
     std::string name;  // Name of the group
 
 public:
-    // Constructor
+    /**
+     * @brief Group constructor
+     * @param groupName The name of the group
+     */
     Group(const std::string& groupName) : name(groupName) {}
 
-    // Accessor for the group name
+    /**
+     * @brief Retrieves the name of the group
+     * @return The name of the group as a string
+     */
     std::string getName() const { return name; }
 
-    // Display method for all objects in the group
+    /** 
+     * @brief Displays the group information
+     * @param out The output stream to display the information
+     */
     void display(std::ostream& out) const {
         out << "Group: " << name << std::endl;
         for (const auto& media : *this) {
             media->display(out);
         }
     }
-    // Destructor
+    /**
+     * @brief Destructor for the Group class
+     */
     ~Group() {
         std::cout << "Destroying Group: " << name << std::endl;
     }
 
-    // Remove an object from the group
+    /**
+     * @brief Add a multimedia object to the group
+     * @param media The multimedia object to add to the group
+     */
+    void addMedia(MultimediaPtr media) {
+        this->push_back(media);
+    }
+    /**
+     * @brief Remove a multimedia object to the group
+     * @param media The multimedia object to add to the group
+     */
     void removeMedia(MultimediaPtr media) {
         auto it = std::find_if(this->begin(), this->end(), 
                            [&media](const std::shared_ptr<Multimedia>& ptr) { 
